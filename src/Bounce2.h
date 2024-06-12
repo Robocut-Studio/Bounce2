@@ -57,7 +57,7 @@
 
 
 /**
-     @brief  The Debouce class. Just the deboucing code separated from all harware.
+     @brief  The Debouce class. Just the deboucing code separated from all hardware.
 */
 class Debouncer
 {
@@ -270,12 +270,14 @@ protected:
 /**
      @brief The Debouncer:Bounce:Button class. The Button class matches an electrical state to a physical action.
      */
-namespace Bounce2 {
+// namespace Bounce2 {
    // code declarations
 
 class Button : public Bounce{
 protected:
     bool stateForPressed = 1; // 
+    using callback = void (*)();
+    callback _callback = nullptr;
   public:
 	/*!
     @brief  Create an instance of the Button class. By default, the pressed state is matched to a HIGH electrical level.
@@ -289,6 +291,8 @@ protected:
 */
    Button(){ }
 
+   void setOnPressedCallback(callback function);
+  bool update() ;
     /*!
     @brief Set the electrical state (HIGH/LOW) that corresponds to a physical press. By default, the pressed state is matched to a HIGH electrical level.
             
@@ -329,6 +333,6 @@ protected:
   };
 
 };
-};
+// }; // namespace Bounce2
 
 #endif

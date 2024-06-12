@@ -151,5 +151,26 @@ void Bounce::attach(int pin, int mode){
     this->attach(pin);
 }
 
+//////////////
+//  BUTTON //
+////////////
+
+void Button::setOnPressedCallback(Button::callback function) {
+    _callback = function;
+}
 
 
+bool Button::update() {
+
+    ;
+    bool status = Debouncer::update();
+
+    if(Button::_callback != NULL){
+        
+        if(pressed()){
+            _callback();    
+        }
+    }
+    return status;
+
+}
