@@ -276,7 +276,7 @@ protected:
 class Button : public Bounce{
 protected:
     bool stateForPressed = 1; // 
-    using callback = void (*)();
+    using callback = void (*)(); 
     callback _callback = nullptr;
   public:
 	/*!
@@ -290,6 +290,7 @@ protected:
     @endcode
 */
    Button(){ }
+   Button(int pin, unsigned long interval_millis,int mode =INPUT_PULLUP);
 
    void setOnPressedCallback(callback function);
   bool update() ;

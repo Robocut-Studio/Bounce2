@@ -155,6 +155,12 @@ void Bounce::attach(int pin, int mode){
 //  BUTTON //
 ////////////
 
+Button::Button(int pin, unsigned long interval_millis,int mode){
+    attach(pin,mode);
+    interval(interval_millis);
+}
+
+
 void Button::setOnPressedCallback(Button::callback function) {
     _callback = function;
 }
@@ -162,7 +168,7 @@ void Button::setOnPressedCallback(Button::callback function) {
 
 bool Button::update() {
 
-    ;
+    
     bool status = Debouncer::update();
 
     if(Button::_callback != NULL){
